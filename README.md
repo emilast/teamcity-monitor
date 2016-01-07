@@ -26,11 +26,11 @@ Features
 * The last refresh time is shown in the bottom left corner of the display so that failed updates
   are easily detected. A red error box is also displayed if there is a refresh failure.
 
-The underlying data source is TeamCity's CCTray-compatibly data feed which is not very
+The underlying data source is TeamCity's CCTray-compatible data feed which is not very
 documented, but it's mentioned here https://confluence.jetbrains.com/display/TCD9/REST+API#RESTAPI-CCTray
 
 This feed is quick and provides most of the information that's interesting to show, so it was selected as the
-source to use for this tool, rather than the full Teamcity API which is very complete and powerful, but slow
+data source to use for this tool, rather than the full Teamcity API which is very complete and powerful, but slow
 and a bit complicated to use.
 
 ## Usage
@@ -45,6 +45,6 @@ To use this tool, update the following `AppSettings` in `Web.config`:
 ```
 
 Then build the project in Visual Studio 2013 or 2015. Test it locally or deploy to
-a shared location and you're done!
+a shared IIS server and you're done!
 
 [screendump]: media/screendump.png
