@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Teamcity Monitor";
+}
+
+<div ng-app="teamCityMonitor" ng-controller="TeamCityStatusController" ng-cloak>
+    <div class="alert alert-danger" ng-show="error">
+        {{error}}
+    </div>
+    <div class="clearfix">
+        <div class="project col-md-1" ng-repeat="project in projects">
+            <div class="well">
+                <div class="projectName ellipsis">{{project.Name}}</div>
+
+                <div>
+                    <div class="buildConfig alert {{ alertTypeFromStatus(buildConfig.Status) }} {{buildConfig.Status}} {{ buildConfig.FinishedRecently }} " ng-repeat="buildConfig in project.BuildConfigs">
+                        @*<span class="pull-right">{{buildConfig.BuildNumber}}</span>*@
+                        <span class="clearfix finished">{{ buildConfig.Finished ? moment(buildConfig.Finished).fromNow() : ""}}</span>
+                        <span class="user">{{buildConfig.Trigger}}</span>
+                        <div class="buildConfigName {{buildConfig.Status}}">{{buildConfig.Name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <span class="refresh-info pull-right_">{{refreshTime}}</span>
+</div>
+
+
+
+@section scripts
+{
+    <script src="~/CustomScripts/TeamCityStatus.js"></script>
+    <script src="~/CustomScripts/alertTypeFromStatus.js"></script>
+
+}
