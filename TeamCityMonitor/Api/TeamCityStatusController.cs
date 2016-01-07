@@ -19,14 +19,6 @@ namespace TeamCityMonitor.Api
 			_teamCityStatusService = new TeamCityStatus();
 		}
 
-
-		// GET: api/TeamCityStatus/builds
-		[Route("api/TeamCityStatus/builds")]
-		public Task<IEnumerable<Project>> GetBuilds()
-		{
-			return _teamCityStatusService.GetTeamCityStatus();
-		}
-
 		// GET: api/Status
 		[Route("api/TeamCityStatus/projects")]
 		public async Task<IEnumerable<Project>> GetProjects()
@@ -98,7 +90,7 @@ namespace TeamCityMonitor.Api
 			return string.Empty;
 		}
 
-		private string MapToBuildConfigStatus(CCTrayProject ccTrayProject)
+		public string MapToBuildConfigStatus(CCTrayProject ccTrayProject)
 		{
 			if (ccTrayProject.activity == "Building")
 				return "Running";
@@ -120,7 +112,7 @@ namespace TeamCityMonitor.Api
 		/// </summary>
 		/// <param name="mergedName">Exanple: "Xena :: Services :: BookingService :: 2 Deploy to CI"</param>
 		/// <returns></returns>
-		private Tuple<string,string> GetProjectNameParts(string mergedName)
+		private static Tuple<string,string> GetProjectNameParts(string mergedName)
 		{
 			var parts = mergedName.Split(new[] {"::"}, StringSplitOptions.RemoveEmptyEntries)
 				.Select(part => part.Trim())
